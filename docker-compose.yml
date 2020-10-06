@@ -1,0 +1,37 @@
+version: '3'
+volumes:
+  pgdata:
+  redisdata:
+services:
+  python:
+    build:
+      context: .
+      dockerfile: docker/python/dockerFile
+    volumes:
+      - ./basic:/basic
+    ports:
+      - 8000:8000
+  postgres:
+    image: postgres:12
+    environment:
+      POSTGRES_USER: sriraman
+      POSTGRES_DB: basic
+      POSTGRES_PASS: payoda@123
+      POSTGRES_HOST_AUTH_METHOD: "trust"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - 5433:5432
+  redis:
+    restart: always
+    image: redis:latest
+    ports:
+      - "6379:6379"
+    volumes:
+      - redisdata:/data
+
+
+#    command: sleep infinity
+#    command: cd /basic && pip install -r requirments.txt && python manage.py runserver
+
+
