@@ -16,7 +16,7 @@ services:
     environment:
       POSTGRES_USER: sriraman
       POSTGRES_DB: basic
-      POSTGRES_PASS: payoda@123
+      POSTGRES_PASS: 
       POSTGRES_HOST_AUTH_METHOD: "trust"
     volumes:
       - pgdata:/var/lib/postgresql/data
